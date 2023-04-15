@@ -72,9 +72,24 @@ export const joinTournament = createAsyncThunk(
   'tournaments/join',
   async(tournamentData,thunkAPI)=>{
     try {
-      console.log('idd')
-      console.log(tournamentData)
       return await tournamentService.joinTournament(tournamentData)
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+      return thunkAPI.rejectWithValue(message)
+    }
+  }
+)
+//join tournament
+export const joinedTournaments = createAsyncThunk(
+  'tournaments/joined',
+  async(tournamentData,thunkAPI)=>{
+    try {
+      return await tournamentService.joinedTournaments(tournamentData)
     } catch (error) {
       const message =
         (error.response &&

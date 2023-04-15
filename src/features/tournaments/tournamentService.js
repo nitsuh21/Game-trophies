@@ -48,20 +48,32 @@ const deleteTournament = async (tournamentId, token) => {
 //join Tournament
 const joinTournament = async (tournamentData) =>{
   try {
-    console.log('id')
-    console.log(tournamentData.id)
-    const data = {user:tournamentData.name,tournament:tournamentData.id}
-    const response = await axios.post(API_URL + 'participants//',data)
+    const response = await axios.post(API_URL + 'participants//',tournamentData)
+    console.log(response)
     return response.data
   } catch (error) {
     console.log(error.response.data)
+  }
+}
+
+const joinedTournaments = async(tournamentData)=>{
+  try {
+    console.log('joined tournaments')
+    console.log(tournamentData)
+    const user = tournamentData
+    const response = await axios.get(API_URL+'participants//',user)
+    console.log('hopefully')
+    console.log(response)
+  } catch (error) {
+    console.log(error)
   }
 }
 const tournamentService = {
   createTournament,
   getTournaments,
   deleteTournament,
-  joinTournament
+  joinTournament,
+  joinedTournaments
 }
 
 export default tournamentService

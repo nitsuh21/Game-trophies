@@ -8,9 +8,8 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { getTournaments } from '../features/tournaments/tournamentSlice.js';
 import {joinTournament} from '../features/tournaments/tournamentSlice.js'
-import { joinedTournaments } from '../features/tournaments/tournamentSlice.js';
 
-const Tournaments = () => {
+const JTournaments = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const { tournaments } = useSelector((state) => state.tournaments)
@@ -24,8 +23,7 @@ const Tournaments = () => {
     alert('hey2')
     navigate('/addtournament')
   }
-  function JT(user){
-    dispatch(joinedTournaments(user))
+  const JT = () =>{
     navigate('/JTournaments')
   }
   function jTournament(user,tournament){
@@ -39,12 +37,6 @@ const Tournaments = () => {
   return (
     <div className='bg-gray-100 min-h-screen'>
       <Header />
-      <button type="button" onClick={add_T} class="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800
-       font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-3 mt-2 mr-2 mb-2">Add New</button>
-       <button type="button" onClick={()=>JT(user.id)} class="text-white bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800
-       font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-3 mt-2 mr-2 mb-2">Joined Tournaments</button>
-       <button type="button" onClick={add_T} class="text-white bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-yellow-800
-       font-medium rounded-lg text-sm px-5 py-2.5 text-center ml-3 mt-2 mr-2 mb-2">Achievements</button>
       <div className='p-4'>
         <div className='w-full m-auto p-4 border rounded-lg bg-white overflow-y-auto'>
           <div className='my-3 p-2 grid md:grid-cols-5 sm:grid-cols-3 grid-cols-2 items-center justify-between cursor-pointer'>
@@ -52,7 +44,7 @@ const Tournaments = () => {
             <span className='hidden sm:grid'>Game</span>
             <span className='sm:text-left text-right'>Status</span>
             <span className='hidden md:grid'>Date</span>
-            <span className='hidden md:grid'>Join</span>
+            <span className='hidden md:grid'>Leave</span>
           </div>
           <ul>
             {tournaments.map((tournament, id) => (
@@ -97,8 +89,8 @@ const Tournaments = () => {
                     <p className='text-gray-800 text-sm'>time:{tournament.time}</p>
                 </div>
                 <p className='text-gray-600 sm:text-left text-right'>
-                <button type="button" onClick={()=>jTournament(user.id,tournament.id)} class="border-2 border-green-500 text-green-500 rounded-full px-12 py-2
-                 inline-block font-semibold hover:bg-green-500 hover:text-white mt-3">Join</button>
+                <button type="button" onClick={()=>jTournament(user.id,tournament.id)} class="border-2 border-red-500 text-red-500 rounded-full px-12 py-2
+                 inline-block font-semibold hover:bg-red-500 hover:text-white mt-3">Leave</button>
                 </p>
               </li>
             ))}
@@ -109,4 +101,4 @@ const Tournaments = () => {
   );
 };
 
-export default Tournaments;
+export default JTournaments;

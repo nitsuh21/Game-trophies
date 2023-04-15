@@ -7,6 +7,7 @@ import Tournaments from './pages/Tournaments';
 import Leaderboard from './pages/Leaderboard';
 import Marketplace from './pages/Marketplace'
 import Addtournament from './pages/Addtournament'
+import JTournaments from './pages/JTournaments';
 import ProtectedRoute from './utils/ProtectedRoute'
 import Settings from './pages/settings';
 import Home from './pages/Home';
@@ -29,6 +30,7 @@ function App() {
         <Route path='/marketplace' element={<Marketplace/>}/>
         <Route path='/settings' element={<Settings/>}/>
         <Route path='/addtournament' element={<Addtournament/>}/>
+        <Route path='/jtournaments' element={<JTournaments/>}/>
         <Route path='/dashboard' element={
           <ProtectedRoute user={user}>
           <Dashboard />
